@@ -1,4 +1,4 @@
-title: Thoughts after reading The Death of Microservice Madness in 2018
+title: Thoughts After Reading The Death of Microservice Madness in 2018
 tags:
   - software
 date: 2018-01-14 20:46:05
