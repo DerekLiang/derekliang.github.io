@@ -24,17 +24,25 @@ with open(traincsvpath) as csvfile:
 
 {% endcodeblock %}
 
-The following is revised version with awesome library pandas. Not only I read the CSV file in the memory array, but also I can group and count them by using `csv.groupby('whaleID').count()`.
+The following is revised version with awesome library pandas. Not only I read the CSV file in the memory array, but also I can group and count them.
 {% codeblock Read CSV files lang:python %}
 
 import pandas as pd
 csv=pd.read_csv(traincsvpath, sep=',')      
 
+# group by whaleID and 
+csv.groupby('whaleID').count()
 {% endcodeblock %}
 
-
+Sample output:
+```
+whaleID	
+whale_00195	14
+whale_00442	3
+whale_02411	12
+...
+```
 
 ##### reference: 
 https://jakevdp.github.io/PythonDataScienceHandbook/03.08-aggregation-and-grouping.html
 http://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.read_csv.html#pandas.read_csv
-
