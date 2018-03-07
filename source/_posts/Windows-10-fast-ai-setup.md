@@ -8,6 +8,8 @@ date: 2018-01-20 16:03:00
 The following steps are used for set up my machine learning environment on my Windows 10 desktop instead of renting machine from AWS.
 
 {% codeblock lang:bash %}
+>conda create --name myenv
+>activate myenv
 >conda install python=3.5
 >conda install -c peterjc123 pytorch cuda80
 >conda install jupyter matplotlib seaborn pillow bcolz
@@ -26,6 +28,7 @@ The following steps are used for set up my machine learning environment on my Wi
 >pip install parameterized
 >pip install keras==1.2.2
 >pip install h5py
+>pip install fastai
 {% endcodeblock %}
 
 I am able to go throught the first lesson on at http://course.fast.ai/lessons/lesson1.html after complete the above setup. :)
