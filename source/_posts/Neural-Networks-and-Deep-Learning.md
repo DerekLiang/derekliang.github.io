@@ -1,7 +1,9 @@
 title: Neural Networks and Deep Learning
 author: Derek Liang
-date: 2018-03-06 21:48:30
 tags:
+  - AI
+categories: []
+date: 2018-03-06 21:48:00
 ---
 After through first part of the FastAI lessons, I am ready to dive deep into the how the deep neural networks. So I started go over some of the things that I grossed over.
 

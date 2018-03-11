@@ -1,7 +1,9 @@
 title: Deep Learning - The back-propagation Algorithm
 author: Derek Liang
-date: 2018-03-10 09:49:09
 tags:
+  - AI
+categories: []
+date: 2018-03-10 09:49:00
 ---
 The following youtube video from  Ryan Harris explaned very well how the back-propagation algorithm works. It has slight different notations than Michael Nielsen's.   
 
