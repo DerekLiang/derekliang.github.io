@@ -1,7 +1,9 @@
 title: 4 In A Line game
 author: Derek Liang
-date: 2018-04-08 15:12:01
 tags:
+  - AI
+categories: []
+date: 2018-04-08 15:12:00
 ---
 I was working 4 in A Line game engine. The objective is the use the Monte Carlo tree search the best move. Later I will have to use the NN to enhance it to see if it is better than the brutal force search algorithm.
 
