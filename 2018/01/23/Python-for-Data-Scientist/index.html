@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python for Data Scientist | Derek Liang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I am learning a new computer language Python which is mandatory for machine learning. While I am working on my first home work for my first Machine Learning lesson, all my code is so far all written i">
+<meta name="keywords" content="AI,software">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python for Data Scientist">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/Python-for-Data-Scientist/index.html">
+<meta property="og:site_name" content="Derek Liang&#39;s Blog">
+<meta property="og:description" content="I am learning a new computer language Python which is mandatory for machine learning. While I am working on my first home work for my first Machine Learning lesson, all my code is so far all written i">
+<meta property="og:updated_time" content="2018-01-24T05:32:54.223Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python for Data Scientist">
+<meta name="twitter:description" content="I am learning a new computer language Python which is mandatory for machine learning. While I am working on my first home work for my first Machine Learning lesson, all my code is so far all written i">
+  
+    <link rel="alternate" href="/atom.xml" title="Derek Liang&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Derek Liang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python-for-Data-Scientist" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/23/Python-for-Data-Scientist/" class="article-date">
+  <time datetime="2018-01-24T04:25:00.000Z" itemprop="datePublished">2018-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python for Data Scientist
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I am learning a new computer language Python which is mandatory for machine learning. While I am working on my first home work for my first Machine Learning lesson, all my code is so far all written in Python and all presented in Jupyter Notebook format which accelerated  the learn curve.</p>
+<p>The Python code is very concise and it comes with lots of great library. Documentation is execellent. </p>
+<p>The following is one of the example code that I used to read CSV file.</p>
+<figure class="highlight python"><figcaption><span>Read CSV files</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line">traincsv=[]</span><br><span class="line"><span class="keyword">with</span> open(traincsvpath) <span class="keyword">as</span> csvfile:</span><br><span class="line">    csvreader = csv.DictReader(csvfile, delimiter=<span class="string">','</span>)</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> csvreader:</span><br><span class="line">        traincsv.append(row)</span><br><span class="line">      </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>The following is revised version with awesome library pandas. Not only I read the CSV file in the memory array, but also I can group and count them.<br><figure class="highlight python"><figcaption><span>Read CSV files</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">csv=pd.read_csv(traincsvpath, sep=<span class="string">','</span>)      </span><br><span class="line"></span><br><span class="line"><span class="comment"># group by whaleID and </span></span><br><span class="line">csv.groupby(<span class="string">'whaleID'</span>).count()</span><br></pre></td></tr></table></figure></p>
+<p>Sample output:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">whaleID	</span><br><span class="line">whale_00195	14</span><br><span class="line">whale_00442	3</span><br><span class="line">whale_02411	12</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h5><p><a href="https://jakevdp.github.io/PythonDataScienceHandbook/03.08-aggregation-and-grouping.html" target="_blank" rel="noopener">https://jakevdp.github.io/PythonDataScienceHandbook/03.08-aggregation-and-grouping.html</a><br><a href="http://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.read_csv.html#pandas.read_csv" target="_blank" rel="noopener">http://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.read_csv.html#pandas.read_csv</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/23/Python-for-Data-Scientist/" data-id="cjfudawoi000f30tal7wby8bq" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/26/Alpha-Zero-Algo-published/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Alpha Zero Algo published
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/20/Windows-10-fast-ai-setup/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Windows 10 fast.ai setup</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/software/" style="font-size: 10px;">software</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/08/4-In-A-Line-game/">4 In A Line game</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/Pytorch-with-MNIST-exercise/">Pytorch with MNIST exercise</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/19/Learning-PyTorch-by-implementing-MNIST-based-on-neural-networks-and-deep-learning-repo/">Learning PyTorch by implementing MNIST based on neural-networks-and-deep-learning repo</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/10/My-own-back-propagation-in-spreadsheet/">My own back-propagation in spreadsheet</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/10/Deep-Learning-The-back-propagation-Algorithm-1/">Deep Learning - The back-propagation Algorithm</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Derek Liang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
