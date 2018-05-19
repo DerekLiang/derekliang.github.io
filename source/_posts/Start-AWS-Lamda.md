@@ -24,7 +24,7 @@ Clone the following repo, https://github.com/awslabs/serverless-application-mode
 
 The hello-world template is under the `examples/apps/hello-world` folder. 
 
-To create a event, that simulate the HTTP request you would like to have the Lamda function to process. I named it event.json and it looks like the following:
+To create an event, that simulate the HTTP request you would like to have the Lamda function to process. I named it event.json and it looks like the following:
 
 ```
 {
@@ -67,7 +67,3 @@ aws cloudformation deploy --template-file packaged.yaml --stack-name helloworld 
 ```
 
 That'it.
-
-
-
-      
