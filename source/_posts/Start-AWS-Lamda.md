@@ -1,7 +1,9 @@
 title: Start AWS Lamda
 author: Derek Liang
-date: 2018-05-18 14:29:18
-tags:
+tags: []
+categories:
+  - aws
+date: 2018-05-18 14:29:00
 ---
 ## Install Prerequisites
 The easiest way to get started with AWS Lamda is to use aws-sam-cli. Install the asw-sam-cli by following the follwing steps:
