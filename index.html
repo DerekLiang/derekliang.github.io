@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Derek Liang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Derek Liang&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Derek Liang&#39;s Blog">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Derek Liang&#39;s Blog">
+  
+    <link rel="alternate" href="/atom.xml" title="Derek Liang&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Derek Liang&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Start-AWS-Lamda" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/18/Start-AWS-Lamda/" class="article-date">
+  <time datetime="2018-05-18T21:29:00.000Z" itemprop="datePublished">2018-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/aws/">aws</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/Start-AWS-Lamda/">Start AWS Lamda</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Install-Prerequisites"><a href="#Install-Prerequisites" class="headerlink" title="Install Prerequisites"></a>Install Prerequisites</h2><p>The easiest way to get started with AWS Lamda is to use aws-sam-cli. Install the asw-sam-cli by following the follwing steps:</p>
+<ol>
+<li>install Python 2.7</li>
+<li><code>pip install aws-sam-cli</code></li>
+</ol>
+<p>Since aws-sam-cli using aws CLI, we need to install it as well:</p>
+<p>1) <code>pip install awscli</code></p>
+<p>If everything install correctly, you should be able to run <code>sam --version</code> and <code>aws --version</code>.</p>
+<p>You might want to install docker as well, the Lamda function was actually run in the docker container. I omit it for it is platform specific.</p>
+<h2 id="Start-Your-hello-world-App"><a href="#Start-Your-hello-world-App" class="headerlink" title="Start Your hello-world App"></a>Start Your hello-world App</h2><p>Clone the following repo, <a href="https://github.com/awslabs/serverless-application-model.git" target="_blank" rel="noopener">https://github.com/awslabs/serverless-application-model.git</a>. There are plenty of examples there. </p>
+<p>The hello-world template is under the <code>examples/apps/hello-world</code> folder. </p>
+<p>To create an event, that simulate the HTTP request you would like to have the Lamda function to process. I named it event.json and it looks like the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;message&quot;: &quot;Hey, are you there?&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>To run locally it, you need to invoke it using the following command:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sam local invoke helloworld -e event.json</span><br></pre></td></tr></table></figure></p>
+<p>Optionally, you can specify <code>-d 5858</code> as additional parameter and debug it in VS code, here is the my launch.json file:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Attach to SAM Local&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;node&quot;,</span><br><span class="line">            &quot;request&quot;: &quot;attach&quot;,</span><br><span class="line">            &quot;address&quot;: &quot;localhost&quot;,</span><br><span class="line">            &quot;port&quot;: 5858,</span><br><span class="line">            &quot;localRoot&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,</span><br><span class="line">            &quot;remoteRoot&quot;: &quot;/var/task&quot;,</span><br><span class="line">            &quot;protocol&quot;: &quot;legacy&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>To run it in aws, you need to first package the files to a S3 bucket, and deploy it using cloudformation. To package it, you need to run the following command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sam package --template-file template.yaml --s3-bucket my-bucket --output-template-file packaged.yaml</span><br></pre></td></tr></table></figure>
+<p>To deploy it, you need to run the following command:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation deploy --template-file packaged.yaml --stack-name helloworld --capabilities CAPABILITY_IAM</span><br></pre></td></tr></table></figure></p>
+<p>That’it.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/18/Start-AWS-Lamda/" data-id="cjhcmrbcu00005cta6d3km1vv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Learning-Keras-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/23/Learning-Keras-2/" class="article-date">
+  <time datetime="2018-04-24T01:01:34.000Z" itemprop="datePublished">2018-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/23/Learning-Keras-2/">Learning Keras 2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It was really a pleasure to going through the notebook. The samples code are working, and straight to the point. There many techniques are demostrated in the Keras API code. I stumbled on it after facing the initial obstacles in machine learning when I was trying my 4 in 1 game solver.</p>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p><a href="https://github.com/leriomaggio/deep-learning-keras-tensorflow" target="_blank" rel="noopener">https://github.com/leriomaggio/deep-learning-keras-tensorflow</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/23/Learning-Keras-2/" data-id="cjgcyznk60000c0tall5bsmxx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Learning-Keras" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/22/Learning-Keras/" class="article-date">
+  <time datetime="2018-04-23T05:36:13.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/22/Learning-Keras/">Learning Keras</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>After poking around (implemented mini-batch, training, validation etc) in the 4 in a line game neural network modeling in Pytorch, I realize that it is just too low level for my liking. It is great for understanding how library code works. It is just not wise to spend time to re-invent the wheel. I decided to to learn more about Keras. Here is the wonderful video I found.</p>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p><a href="https://www.youtube.com/watch?v=FrkYu2zVUyM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=FrkYu2zVUyM</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/22/Learning-Keras/" data-id="cjgbtden900000gtaj4a0lm37" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-4-In-A-Line-game" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/08/4-In-A-Line-game/" class="article-date">
+  <time datetime="2018-04-08T22:12:00.000Z" itemprop="datePublished">2018-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/08/4-In-A-Line-game/">4 In A Line game</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I was working 4 in A Line game engine. The objective is the use the Monte Carlo tree search the best move. Later I will have to use the NN to enhance it to see if it is better than the brutal force search algorithm.</p>
+<p>While I am still getting use to Python syntax and gotcha, I made the first version that can play against itself. Here is what I have learnt from coding Python for the small project so far. Since the language is loosely typed and I am so get used to typed language, it is quite tedious to refactor the code especially when I have to move code around and change the type/shape of the variables. Common problems like missing brackets when calling a function(it actually works and no runtime error) make debugging really bad experience.</p>
+<p>As for the Monte Carlo tree search algorithm, it seems that it takes lots of CPU cycles to really get some basic moves right. I am using UCT optimization for the search algorithm. At round 1000 total nodes in the search tree (SimTree) and about 2 minute of CPU time to play a 19-move (both player) game. Python probablly is not the best language to implement the algorithm. The search speed exponentially slow down when more nodes gets added to the tree.</p>
+<p>Here is one the self playing game. Player red and yellow are playing a 7x6 board.</p>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p><a href="http://www.cs.utexas.edu/~pstone/Courses/394Rspring13/resources/mcrave.pdf" target="_blank" rel="noopener">http://www.cs.utexas.edu/~pstone/Courses/394Rspring13/resources/mcrave.pdf</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line">--------red at position 3</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 4</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------red at position 3</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 3</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 2 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------red at position 3</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]</span><br><span class="line"> [0 0 0 2 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 4</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]</span><br><span class="line"> [0 0 0 2 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------red at position 4</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]</span><br><span class="line"> [0 0 0 2 1 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 1</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 0 0 0]</span><br><span class="line"> [0 0 0 2 1 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------red at position 4</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 1 0 0]</span><br><span class="line"> [0 0 0 2 1 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 1</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 1 0 0]</span><br><span class="line"> [0 0 0 2 1 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------red at position 1</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 4</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 2 0 0]</span><br><span class="line"> [0 0 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]]</span><br><span class="line"></span><br><span class="line">--------red at position 6</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 2 0 0]</span><br><span class="line"> [0 0 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 0]</span><br><span class="line"> [0 2 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 2 0 1]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 6</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 2 0 0]</span><br><span class="line"> [0 0 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 0]</span><br><span class="line"> [0 2 0 1 2 0 2]</span><br><span class="line"> [0 2 0 1 2 0 1]]</span><br><span class="line"></span><br><span class="line">--------red at position 6</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 2 0 0]</span><br><span class="line"> [0 0 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 1]</span><br><span class="line"> [0 2 0 1 2 0 2]</span><br><span class="line"> [0 2 0 1 2 0 1]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 1</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 0 2 0 0]</span><br><span class="line"> [0 2 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 1]</span><br><span class="line"> [0 2 0 1 2 0 2]</span><br><span class="line"> [0 2 0 1 2 0 1]]</span><br><span class="line"></span><br><span class="line">--------red at position 3</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 1]</span><br><span class="line"> [0 2 0 1 2 0 2]</span><br><span class="line"> [0 2 0 1 2 0 1]]</span><br><span class="line"></span><br><span class="line">--------yellow at position 5</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 1]</span><br><span class="line"> [0 2 0 1 2 0 2]</span><br><span class="line"> [0 2 0 1 2 2 1]]</span><br><span class="line"></span><br><span class="line">--------red at position 5</span><br><span class="line">[[0 0 0 0 0 0 0]</span><br><span class="line"> [0 0 0 1 2 0 0]</span><br><span class="line"> [0 2 0 1 1 0 0]</span><br><span class="line"> [0 1 0 2 1 0 1]</span><br><span class="line"> [0 2 0 1 2 1 2]</span><br><span class="line"> [0 2 0 1 2 2 1]]</span><br><span class="line">game finished and result is:red win</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/08/4-In-A-Line-game/" data-id="cjfudawo5000530taocpwrwyr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Pytorch-with-MNIST-exercise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/26/Pytorch-with-MNIST-exercise/" class="article-date">
+  <time datetime="2018-03-27T06:27:08.000Z" itemprop="datePublished">2018-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/26/Pytorch-with-MNIST-exercise/">Pytorch with MNIST exercise</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I just implemented a CNN from scratch with MNIST dataset using Pytorch. </p>
+<p>Here are the few things I learnt along the way:</p>
+<ol>
+<li>The very first task is to visualize the dataset. Create a little helper utility will save time in long run.</li>
+<li>Follow the algorithm as close as possible. It took me a while to find out that if the input mini batch is not randomized on every epoch, you can only get around 80% accuracy instead of above 95%.</li>
+<li>Study sample code in the tutorial carefully. It took me a while to figure out how to use Cross Entropy Loss function instead of MSE, since the two functions are using totally different interface. Pytorch is a low-level API, and you need to shape the data yourself although both are loss functions.</li>
+</ol>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p><a href="https://github.com/DerekLiang/neural-networks-and-deep-learning/blob/master/src/mnist.ipynb" target="_blank" rel="noopener">https://github.com/DerekLiang/neural-networks-and-deep-learning/blob/master/src/mnist.ipynb</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/26/Pytorch-with-MNIST-exercise/" data-id="cjfudawok000k30tavenjligx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Learning-PyTorch-by-implementing-MNIST-based-on-neural-networks-and-deep-learning-repo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/19/Learning-PyTorch-by-implementing-MNIST-based-on-neural-networks-and-deep-learning-repo/" class="article-date">
+  <time datetime="2018-03-19T15:40:00.000Z" itemprop="datePublished">2018-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/Learning-PyTorch-by-implementing-MNIST-based-on-neural-networks-and-deep-learning-repo/">Learning PyTorch by implementing MNIST based on neural-networks-and-deep-learning repo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>After going through Michael Nielson’s book, I decided to reimplement his algorithm in PyTorch, before further diving into my second round of FAST AI part 1 lectures.</p>
+<h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p><a href="https://github.com/DerekLiang/neural-networks-and-deep-learning/tree/master/src" target="_blank" rel="noopener">https://github.com/DerekLiang/neural-networks-and-deep-learning/tree/master/src</a><br><a href="http://neuralnetworksanddeeplearning.com/chap1.html" target="_blank" rel="noopener">http://neuralnetworksanddeeplearning.com/chap1.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/19/Learning-PyTorch-by-implementing-MNIST-based-on-neural-networks-and-deep-learning-repo/" data-id="cjfudawny000230tamxjfy09o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-My-own-back-propagation-in-spreadsheet" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/10/My-own-back-propagation-in-spreadsheet/" class="article-date">
+  <time datetime="2018-03-11T06:01:00.000Z" itemprop="datePublished">2018-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/10/My-own-back-propagation-in-spreadsheet/">My own back-propagation in spreadsheet</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I just made a back-propagation alghorithm in google doc. It has one input, 1 hidden layer(1 neuron) and one output layer (1 neuron). </p>
+<h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p><a href="https://docs.google.com/spreadsheets/d/1-48AA0IiDB-IOEivb5tt7k7HTTHkfhRvxGg2EMeDkBk/edit?usp=sharing" target="_blank" rel="noopener">https://docs.google.com/spreadsheets/d/1-48AA0IiDB-IOEivb5tt7k7HTTHkfhRvxGg2EMeDkBk/edit?usp=sharing</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/10/My-own-back-propagation-in-spreadsheet/" data-id="cjfudawoc000a30ta6tybylv5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Deep-Learning-The-back-propagation-Algorithm-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/10/Deep-Learning-The-back-propagation-Algorithm-1/" class="article-date">
+  <time datetime="2018-03-10T17:49:00.000Z" itemprop="datePublished">2018-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/10/Deep-Learning-The-back-propagation-Algorithm-1/">Deep Learning - The back-propagation Algorithm</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The following youtube video from  Ryan Harris explaned very well how the back-propagation algorithm works. It has slight different notations than Michael Nielsen’s.   </p>
+<h5 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h5><p><a href="https://www.youtube.com/watch?v=aVId8KMsdUU&amp;list=PL29C61214F2146796" target="_blank" rel="noopener">https://www.youtube.com/watch?v=aVId8KMsdUU&amp;list=PL29C61214F2146796</a><br><a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="noopener">http://neuralnetworksanddeeplearning.com/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/10/Deep-Learning-The-back-propagation-Algorithm-1/" data-id="cjfudawo7000630tatjkzk8af" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Neural-Networks-and-Deep-Learning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/06/Neural-Networks-and-Deep-Learning/" class="article-date">
+  <time datetime="2018-03-07T05:48:00.000Z" itemprop="datePublished">2018-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/06/Neural-Networks-and-Deep-Learning/">Neural Networks and Deep Learning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>After through first part of the FastAI lessons, I am ready to dive deep into the how the deep neural networks. So I started go over some of the things that I grossed over.</p>
+<p>In the lesson 2 wiki notes, there is a link that point to a web site <code>Neural Networks and Deep Learning</code> by Michael Nielsen. It introduced the same concept that Jeremy taught in the FastAI lessons but front different angle. It explained well the reasons behide deep learning and introduce the related concepts. For example it explanes very well why we are doing stochastic gradient descent instead gradient descent, and what is mini-batch in the context. Overall it creates a solid theoretical foundation for me to move further down the deep learning path.</p>
+<h5 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h5><p><a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="noopener">http://neuralnetworksanddeeplearning.com/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/06/Neural-Networks-and-Deep-Learning/" data-id="cjfudawo1000330tah5uhg936" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Pytorch-explained" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/22/Pytorch-explained/" class="article-date">
+  <time datetime="2018-02-22T18:04:00.000Z" itemprop="datePublished">2018-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/22/Pytorch-explained/">PyTorch explained</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Just read the following article, and clear some doubts about the programming model of PyTorch. As some of the HackerNews comments pointed out, TensorFlow is low-level API that can scale to 10K machines while the strenth of PyTorch is easily to learn and GPU accelerated on single node. Thanks for the article.</p>
+<h5 id="reference"><a href="#reference" class="headerlink" title="reference:"></a>reference:</h5><p><a href="http://www.goldsborough.me/ml/ai/python/2018/02/04/20-17-20-a_promenade_of_pytorch/" target="_blank" rel="noopener">http://www.goldsborough.me/ml/ai/python/2018/02/04/20-17-20-a_promenade_of_pytorch/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/22/Pytorch-explained/" data-id="cjfudawoj000h30ta48wdtftc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/aws/">aws</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/software/" style="font-size: 10px;">software</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/18/Start-AWS-Lamda/">Start AWS Lamda</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/23/Learning-Keras-2/">Learning Keras 2</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Learning-Keras/">Learning Keras</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/08/4-In-A-Line-game/">4 In A Line game</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/26/Pytorch-with-MNIST-exercise/">Pytorch with MNIST exercise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Derek Liang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
